@@ -6,35 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExGen Art Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+
 </head>
 
 <body class="font-sans bg-white text-gray-800">
 
     <!-- 🔹 NAVBAR -->
-    <nav class="flex justify-center gap-10 py-4 bg-white shadow-sm">
+    <nav class="fixed top-0 left-0 w-full flex justify-start gap-10 py-4 px-36 bg-white shadow-md font-semibold z-50">
         <a href="#home" class="hover:text-blue-500">Home</a>
+        <a href="#gallery" class="hover:text-blue-500">Gallery</a>
         <a href="#event" class="hover:text-blue-500">Event</a>
     </nav>
 
     <!-- 🔹 HERO SECTION -->
-    <section id="home" class="relative text-center py-60">
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-            <!-- Gambar background dummy -->
+    <section id="home" class="relative text-center py-60 overflow-hidden pt-48">
+        <!-- 🔹 Background -->
+        <div class="absolute top-0 left-0 w-full h-full -z-10">
             <img src="{{ asset('images/bg1.png') }}" alt="background" class="w-full h-full object-cover opacity-80">
         </div>
 
-        <!-- 🔸 LOGO -->
-        <div class="flex justify-center">
-            <!-- GANTI gambar di bawah dengan logo kamu -->
-            <img src="{{ asset('images/logo.png') }}" alt="Logo ExGen" class="h-40 w-auto">
-        </div>
+        <!-- 🔹 Gambar Exter di kanan -->
+        <img src="{{ asset('images/exter.png') }}" 
+            alt="Exter" 
+            class="absolute right-0 top-1/2 transform -translate-y-1/2 h-full w-auto">
 
-        <h1 class="text-3xl md:text-5xl font-bold mb-4">EXGEN ART STUDIO</h1>
-        <p class="max-w-xl mx-auto text-sm md:text-base">
-            Apotek Kami adalah tujuan utama Anda untuk kesehatan yang lebih baik.
-            Kami menyediakan berbagai macam obat-obatan dan produk kesehatan dengan harga terjangkau dan layanan yang
-            ramah.
-        </p>
+        <!-- 🔹 Konten utama (logo + teks) -->
+        <div class="flex flex-col items-center justify-center">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo ExGen" class="h-40 w-auto mb-4">
+            <h1 class="text-3xl md:text-5xl font-bold mb-4">EXGEN ART STUDIO</h1>
+            <p class="max-w-xl mx-auto text-sm md:text-base">
+                Apotek Kami adalah tujuan utama Anda untuk kesehatan yang lebih baik.
+                Kami menyediakan berbagai macam obat-obatan dan produk kesehatan dengan harga terjangkau dan layanan yang ramah.
+            </p>
+        </div>
     </section>
 
     <!-- 🔹 PROFILE PENGAJAR -->
@@ -43,7 +56,7 @@
             class="w-72 h-96 object-cover rounded-2xl shadow-xl">
         <div class="max-w-md text-center md:text-left">
             <h2 class="text-3xl font-bold mb-3">Profile Pengajar</h2>
-            <p class="text-sm md:text-base">
+            <p class="text-md md:text-base">
                 Apotek Kami adalah tujuan utama Anda untuk kesehatan yang lebih baik.
                 Kami menyediakan berbagai macam obat-obatan dan produk kesehatan dengan harga terjangkau dan layanan
                 yang ramah.
@@ -52,47 +65,117 @@
     </section>
 
     <!-- 🔹 ONLINE & OFFLINE CLASS -->
-    <section class="py-40 bg-gradient-to-b from-orange-100 to-orange-200 text-center">
+    <section class="relative text-center py-40 overflow-hidden">
+        <!-- 🔸 Background seperti bg1 -->
+        <div class="absolute top-0 left-0 w-full h-full -z-10">
+            <img src="{{ asset('images/bg2.png') }}" alt="background" class="w-full h-full object-cover">
+        </div>
+
+        <!-- 🔸 Konten -->
         <div class="flex flex-col md:flex-row justify-center items-center gap-12 px-6">
-            <div class="bg-white p-24 rounded-2xl shadow-md w-90">
+            <div class="bg-white/90 p-16 rounded-2xl shadow-md w-90">
                 <h3 class="text-xl font-bold mb-3">Online Class</h3>
-                <p class="text-sm mb-4">
+                <p class="text-md mb-4">
                     Apotek Kami adalah tujuan utama Anda untuk kesehatan yang lebih baik.
                     Kami menyediakan berbagai macam obat-obatan dan produk kesehatan dengan harga terjangkau.
                 </p>
-                <button class="bg-blue-500 text-white px-5 py-2 rounded-md hover:bg-blue-600">Daftar</button>
+                <button class="bg-blue-500 text-white px-5 py-2 rounded-md hover:bg-blue-600 font-semibold">Daftar</button>
             </div>
 
-            <div class="bg-white p-24 rounded-2xl shadow-md w-90">
+            <div class="bg-white/90 p-16 rounded-2xl shadow-md w-90">
                 <h3 class="text-xl font-bold mb-3">Offline Class</h3>
-                <p class="text-sm mb-4">
+                <p class="text-md mb-4">
                     Apotek Kami adalah tujuan utama Anda untuk kesehatan yang lebih baik.
                     Kami menyediakan berbagai macam obat-obatan dan produk kesehatan dengan harga terjangkau.
                 </p>
-                <button class="bg-blue-500 text-white px-5 py-2 rounded-md hover:bg-blue-600">Daftar</button>
+                <button class="bg-blue-500 text-white px-5 py-2 rounded-md hover:bg-blue-600 font-semibold">Daftar</button>
             </div>
         </div>
     </section>
 
     <!-- 🔹 GALLERY EVENT -->
-    <section id="event" class="py-20 bg-teal-900 text-white text-center">
+    <section id="event" class="py-20 bg-teal-900 text-white text-center relative">
         <h2 class="text-3xl font-bold mb-8">Gallery Event</h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6  justify-items-center px-6">
-            <div class="w-60 h-60 bg-gray-400 rounded-xl"></div>
-            <div class="w-60 h-60 bg-gray-400 rounded-xl"></div>
-            <div class="w-60 h-60 bg-gray-400 rounded-xl"></div>
-            <div class="w-60 h-60 bg-gray-400 rounded-xl"></div>
+
+        <!-- Tombol kiri -->
+        <button id="scrollLeft"
+            class="absolute left-10 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full w-12 h-12 flex items-center justify-center backdrop-blur-md transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+        </button>
+
+        <!-- Tombol kanan -->
+        <button id="scrollRight"
+            class="absolute right-10 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full w-12 h-12 flex items-center justify-center backdrop-blur-md transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+        </button>
+
+        <!-- Kontainer scroll -->
+        <div id="galleryContainer"
+            class="flex overflow-x-auto no-scrollbar space-x-6 px-6 justify-start scroll-smooth snap-x snap-mandatory max-w-[1200px] mx-auto">
+            <div class="w-80 h-80 bg-white rounded-xl flex-shrink-0 snap-start overflow-hidden">
+                <img src="/images/Zulfan.png" class="w-full h-full object-cover" alt="">
+            </div>
+            <div class="w-80 h-80 bg-white rounded-xl flex-shrink-0 snap-start overflow-hidden">
+                <img src="/images/Zulfan.png" class="w-full h-full object-cover" alt="">
+            </div>
+            <div class="w-80 h-80 bg-white rounded-xl flex-shrink-0 snap-start overflow-hidden">
+                <img src="/images/Zulfan.png" class="w-full h-full object-cover" alt="">
+            </div>
+            <div class="w-80 h-80 bg-white rounded-xl flex-shrink-0 snap-start overflow-hidden">
+                <img src="/images/Zulfan.png" class="w-full h-full object-cover" alt="">
+            </div>
+            <div class="w-80 h-80 bg-white rounded-xl flex-shrink-0 snap-start overflow-hidden">
+                <img src="/images/Zulfan.png" class="w-full h-full object-cover" alt="">
+            </div>
         </div>
     </section>
 
     <!-- 🔹 GALLERY KARYA -->
-    <section id="gallery" class="py-24 bg-teal-800 text-white text-center">
+    <section id="event" class="py-20 bg-teal-800 text-white text-center relative">
         <h2 class="text-3xl font-bold mb-8">Gallery Karya</h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6  justify-items-center px-6">
-            <div class="w-60 h-60 bg-gray-400 rounded-xl"></div>
-            <div class="w-60 h-60 bg-gray-400 rounded-xl"></div>
-            <div class="w-60 h-60 bg-gray-400 rounded-xl"></div>
-            <div class="w-60 h-60 bg-gray-400 rounded-xl"></div>
+
+        <!-- Tombol kiri -->
+        <button id="scrollLeft"
+            class="absolute left-10 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full w-12 h-12 flex items-center justify-center backdrop-blur-md transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+        </button>
+
+        <!-- Tombol kanan -->
+        <button id="scrollRight"
+            class="absolute right-10 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full w-12 h-12 flex items-center justify-center backdrop-blur-md transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+        </button>
+
+        <!-- Kontainer scroll -->
+        <div id="galleryContainer"
+            class="flex overflow-x-auto no-scrollbar space-x-6 px-6 justify-start scroll-smooth snap-x snap-mandatory max-w-[1200px] mx-auto">
+            <div class="w-80 h-80 bg-white rounded-xl flex-shrink-0 snap-start overflow-hidden">
+                <img src="/images/Zulfan.png" class="w-full h-full object-cover" alt="">
+            </div>
+            <div class="w-80 h-80 bg-white rounded-xl flex-shrink-0 snap-start overflow-hidden">
+                <img src="/images/Zulfan.png" class="w-full h-full object-cover" alt="">
+            </div>
+            <div class="w-80 h-80 bg-white rounded-xl flex-shrink-0 snap-start overflow-hidden">
+                <img src="/images/Zulfan.png" class="w-full h-full object-cover" alt="">
+            </div>
+            <div class="w-80 h-80 bg-white rounded-xl flex-shrink-0 snap-start overflow-hidden">
+                <img src="/images/Zulfan.png" class="w-full h-full object-cover" alt="">
+            </div>
+            <div class="w-80 h-80 bg-white rounded-xl flex-shrink-0 snap-start overflow-hidden">
+                <img src="/images/Zulfan.png" class="w-full h-full object-cover" alt="">
+            </div>
         </div>
     </section>
 
@@ -165,6 +248,21 @@
             © {{ date('Y') }} ExGen Art Studio. All rights reserved.
         </div>
     </footer>
+
+    <script>
+        const gallery = document.getElementById("galleryContainer");
+        const scrollLeftBtn = document.getElementById("scrollLeft");
+        const scrollRightBtn = document.getElementById("scrollRight");
+
+        scrollLeftBtn.addEventListener("click", () => {
+            gallery.scrollBy({ left: -300, behavior: "smooth" });
+        });
+
+        scrollRightBtn.addEventListener("click", () => {
+            gallery.scrollBy({ left: 300, behavior: "smooth" });
+        });
+    </script>
+
 </body>
 
 </html>
