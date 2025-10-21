@@ -4,9 +4,18 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 
+use App\Http\Controllers\GalleryController;
+
 Route::get('/', function () {
-    return view('welcome');
+    $galleryEvent = File::files(public_path('images/event'));
+    $galleryKarya = File::files(public_path('images/karya'));
+    
+    return view('welcome', compact('galleryEvent', 'galleryKarya'));
 })->name('home');
+
+Route::get('/lomba', function () {
+    return view('lomba');
+})->name('lomba');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -32,3 +41,5 @@ Route::middleware(['auth'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
