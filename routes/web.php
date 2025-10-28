@@ -5,7 +5,12 @@ use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\GalleryAdminController;
+use App\Http\Controllers\EventController;
 
+// ----------------------
+// 🌐 HALAMAN UTAMA
+// ----------------------
 Route::get('/', function () {
     $galleryEvent = File::files(public_path('images/event'));
     $galleryKarya = File::files(public_path('images/karya'));
@@ -17,7 +22,10 @@ Route::get('/lomba', function () {
     return view('lomba');
 })->name('lomba');
 
-Route::view('dashboard', 'dashboard')
+// ----------------------
+// 🧑‍💻 DASHBOARD USER
+// ----------------------
+Route::get('/dashboard', [GalleryAdminController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
@@ -42,4 +50,28 @@ Route::middleware(['auth'])->group(function () {
 
 require __DIR__.'/auth.php';
 
+// ----------------------
+// 🎨 GALLERY USER
+// ----------------------
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
+
+// ----------------------
+// 🖼️ GALLERY ADMIN
+// ----------------------
+Route::prefix('admin/gallery')->middleware('auth')->group(function () {
+    Route::get('/', [GalleryAdminController::class, 'index'])->name('admin.gallery.index');
+    Route::post('/store', [GalleryAdminController::class, 'storeGallery'])->name('gallery.store');
+    Route::delete('/{id}', [GalleryAdminController::class, 'deleteGallery'])->name('gallery.delete');
+    Route::put('/update/{id}', [GalleryAdminController::class, 'updateGallery'])->name('gallery.update');
+});
+
+// ----------------------
+// 🎉 GALLERY EVENT ADMIN
+// ----------------------
+Route::prefix('admin/event')->middleware('auth')->group(function () {
+    Route::get('/', [GalleryAdminController::class, 'index'])->name('admin.event.index');
+    Route::post('/store', [GalleryAdminController::class, 'storeEvent'])->name('event.store');
+    Route::delete('/{id}', [GalleryAdminController::class, 'deleteEvent'])->name('event.delete');
+    Route::put('/update/{id}', [GalleryAdminController::class, 'updateEvent'])->name('event.update');
+});
+
