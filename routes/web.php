@@ -18,10 +18,6 @@ Route::get('/', function () {
     return view('welcome', compact('galleryEvent', 'galleryKarya'));
 })->name('home');
 
-Route::get('/lomba', function () {
-    return view('lomba');
-})->name('lomba');
-
 // ----------------------
 // 🧑‍💻 DASHBOARD USER
 // ----------------------
@@ -55,8 +51,13 @@ require __DIR__.'/auth.php';
 // ----------------------
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 
+// =======================
+// 🧍‍♂️ EVENT LOMBA USER
+// =======================
+Route::get('/lomba', [EventController::class, 'publicIndex'])->name('lomba');
+
 // ----------------------
-// 🖼️ GALLERY ADMIN
+// 🖼️ GALLERY KARYA ADMIN
 // ----------------------
 Route::prefix('admin/gallery')->middleware('auth')->group(function () {
     Route::get('/', [GalleryAdminController::class, 'index'])->name('admin.gallery.index');
@@ -73,5 +74,16 @@ Route::prefix('admin/event')->middleware('auth')->group(function () {
     Route::post('/store', [GalleryAdminController::class, 'storeEvent'])->name('event.store');
     Route::delete('/{id}', [GalleryAdminController::class, 'deleteEvent'])->name('event.delete');
     Route::put('/update/{id}', [GalleryAdminController::class, 'updateEvent'])->name('event.update');
+});
+
+
+// =======================
+// 🧑‍💻 EVENT LOMBA ADMIN
+// =======================
+Route::prefix('admin/manage-event')->middleware('auth')->group(function () {
+    Route::get('/', [EventController::class, 'index'])->name('admin.manageevent.index');
+    Route::post('/store', [EventController::class, 'store'])->name('admin.manageevent.store');
+    Route::delete('/{id}', [EventController::class, 'destroy'])->name('admin.manageevent.destroy');
+    Route::put('/update/{id}', [EventController::class, 'update'])->name('admin.manageevent.update');
 });
 

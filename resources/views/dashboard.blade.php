@@ -5,11 +5,11 @@
         {{-- Upload Event --}}
         <form action="{{ route('event.store') }}" method="POST" enctype="multipart/form-data" class="mb-6">
             @csrf
-            <label class="block mb-2 font-semibold">Upload Foto Event:</label>
+            <label class="block mb-2 text-lg font-semibold">Upload Foto Event:</label>
 
             {{-- Input File Custom --}}
             <label class="cursor-pointer flex items-center border-2 border-dashed border-gray-300 rounded-lg p-3 mb-3 hover:border-teal-400 transition w-2/3 sm:w-1/2">
-                <span class="text-gray-500 pl-2">Choose File</span>
+                <span class="text-gray-500 pl-2">Pilih File</span>
                 <input type="file" name="images[]" multiple class="hidden" accept="image/*" required>
             </label>
 
@@ -55,11 +55,11 @@
         {{-- Upload Karya --}}
         <form action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data" class="mb-6">
             @csrf
-            <label class="block mb-2 font-semibold">Upload Foto Karya:</label>
+            <label class="block mb-2 text-lg font-semibold">Upload Foto Karya:</label>
 
             {{-- Input File Custom --}}
             <label class="cursor-pointer flex items-center border-2 border-dashed border-gray-300 rounded-lg p-3 mb-3 hover:border-teal-400 transition w-2/3 sm:w-1/2">
-                <span class="text-gray-500 pl-2">Choose File</span>
+                <span class="text-gray-500 pl-2">Pilih File</span>
                 <input type="file" name="images[]" multiple class="hidden" accept="image/*" required>
             </label>
 
@@ -117,7 +117,7 @@
                 {{-- Input File Custom --}}
                 <label for="imageInput" 
                     class="cursor-pointer flex items-center justify-center w-full border-2 border-dashed border-gray-300 rounded-lg p-3 mb-3 hover:border-teal-400 transition">
-                    <span id="fileLabel" class="text-gray-500">Choose File</span>
+                    <span id="fileLabel" class="text-gray-500">Pilih File</span>
                     <input type="file" id="imageInput" name="image" class="hidden" accept="image/*" required>
                 </label>
 
@@ -158,7 +158,7 @@
                 const fileCount = e.target.files.length;
 
                 if (fileCount === 0) {
-                    label.textContent = 'Choose File';
+                    label.textContent = 'Pilih File';
                 } else if (fileCount === 1) {
                     label.textContent = e.target.files[0].name;
                 } else {
@@ -167,54 +167,7 @@
             });
         });
 
-        // Buka modal edit
-        function openEditModal(type, id, imageUrl) {
-            const modal = document.getElementById('editModal');
-            const form = document.getElementById('editForm');
-            const preview = document.getElementById('editPreview');
-            const fileLabel = document.getElementById('fileLabel');
-
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-
-            preview.src = imageUrl;
-            fileLabel.textContent = 'Choose File';
-
-            // set form action sesuai jenis
-            form.action = type === 'event' 
-                ? `/admin/event/update/${id}` 
-                : `/admin/gallery/update/${id}`;
-        }
-
-        // Tutup modal edit
-        function closeEditModal() {
-            const modal = document.getElementById('editModal');
-            modal.classList.add('hidden');
-        }
-
-        // Preview gambar baru + tampilkan nama file
-        document.addEventListener('DOMContentLoaded', () => {
-            const input = document.getElementById('imageInput');
-            const fileLabel = document.getElementById('fileLabel');
-            const preview = document.getElementById('editPreview');
-
-            input.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                const fileName = file ? file.name : 'Choose File';
-                fileLabel.textContent = fileName;
-
-                // 🔹 Ganti preview langsung
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(ev) {
-                        preview.src = ev.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-
-
+        // === Modal Edit ===
         function openEditModal(type, id, imageUrl) {
             const modal = document.getElementById('editModal');
             const form = document.getElementById('editForm');
@@ -224,7 +177,6 @@
             modal.classList.add('flex');
             preview.src = imageUrl;
 
-            // ✅ arahkan ke route yang benar (tidak reload ke halaman baru)
             if (type === 'event') {
                 form.action = `/admin/event/update/${id}`;
             } else {
@@ -233,57 +185,69 @@
         }
 
         function closeEditModal() {
-            const modal = document.getElementById('editModal');
-            modal.classList.add('hidden');
+            document.getElementById('editModal').classList.add('hidden');
         }
 
-            // === Modal Hapus ===
-            function openDeleteModal(type, id) {
-                const modal = document.getElementById('deleteModal');
-                const form = document.getElementById('deleteForm');
+        // Tutup modal edit jika klik di luar konten modal
+        document.getElementById('editModal')?.addEventListener('click', function (e) {
+            if (e.target === this) closeEditModal();
+        });
 
-                // **SET ACTION SESUAI ROUTE YANG ADA**
-                // Jika route delete didefinisikan sebagai:
-                // Route::prefix('admin/event')->delete('/{id}', ...)->name('event.delete');
-                // maka URL yang benar adalah /admin/event/{id}
-                if (type === 'event') {
-                    form.action = `/admin/event/${id}`;
-                } else {
-                    form.action = `/admin/gallery/${id}`;
-                }
+        // === Modal Hapus ===
+        function openDeleteModal(type, id) {
+            const modal = document.getElementById('deleteModal');
+            const form = document.getElementById('deleteForm');
 
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
+            if (type === 'event') {
+                form.action = `/admin/event/${id}`;
+            } else {
+                form.action = `/admin/gallery/${id}`;
             }
 
-            function closeDeleteModal() {
-                document.getElementById('deleteModal').classList.add('hidden');
-            }
-        
-        function showToast(message, type = 'success') {
-        const toastContainer = document.getElementById('toastContainer');
-        const toast = document.createElement('div');
-        
-        const colors = {
-            success: 'bg-teal-500',
-            error: 'bg-red-500',
-            warning: 'bg-yellow-500',
-            info: 'bg-blue-500'
-        };
-
-        toast.className = `${colors[type]} text-white px-4 py-3 rounded-lg shadow-lg flex items-center justify-between w-72 animate-slideIn`;
-        toast.innerHTML = `
-            <span>${message}</span>
-            <button onclick="this.parentElement.remove()" class="ml-3 text-white text-lg leading-none">&times;</button>
-        `;
-
-        toastContainer.appendChild(toast);
-
-        // Hapus otomatis setelah 7 detik
-        setTimeout(() => toast.remove(), 7000);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
         }
 
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.add('hidden');
+        }
+
+        // Tutup modal hapus jika klik di luar konten modal
+        document.getElementById('deleteModal')?.addEventListener('click', function (e) {
+            if (e.target === this) closeDeleteModal();
+        });
+
+        // Tutup modal dengan tombol ESC
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeEditModal();
+                closeDeleteModal();
+            }
+        });
+
+        // Preview gambar baru + tampilkan nama file
         document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('imageInput');
+            const fileLabel = document.getElementById('fileLabel');
+            const preview = document.getElementById('editPreview');
+
+            if (input) {
+                input.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    const fileName = file ? file.name : 'Pilih File';
+                    fileLabel.textContent = fileName;
+
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (ev) {
+                            preview.src = ev.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            // === Toast Handling ===
             @if(session('success'))
                 showToast("{{ session('success') }}", 'success');
             @elseif(session('error'))
@@ -292,16 +256,37 @@
                 showToast("Terjadi kesalahan validasi. Periksa input Anda.", 'error');
             @endif
         });
+
+        // === Toast ===
+        function showToast(message, type = 'success') {
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+
+            const colors = {
+                success: 'bg-teal-500',
+                error: 'bg-red-500',
+                warning: 'bg-yellow-500',
+                info: 'bg-blue-500'
+            };
+
+            toast.className = `${colors[type]} text-white px-4 py-3 rounded-lg shadow-lg flex items-center justify-between w-72 animate-slideIn`;
+            toast.innerHTML = `
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()" class="ml-3 text-white text-lg leading-none">&times;</button>
+            `;
+
+            toastContainer.appendChild(toast);
+            setTimeout(() => toast.remove(), 7000);
+        }
     </script>
 
     <style>
-        //Toast Style
         @keyframes slideIn {
-        from { opacity: 0; transform: translateX(30px); }
-        to { opacity: 1; transform: translateX(0); }
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         .animate-slideIn {
-        animation: slideIn 0.3s ease-out;
+            animation: slideIn 0.3s ease-out;
         }
     </style>
 
