@@ -65,13 +65,4 @@ select:focus[data-flux-control] {
     @apply size-4;
 } */
 
-/* Hilangkan scrollbar di semua browser modern */
-.no-scrollbar {
-  -ms-overflow-style: none;  /* IE dan Edge */
-  scrollbar-width: none;      /* Firefox */
-}
-.no-scrollbar::-webkit-scrollbar {
-  display: none;              /* Chrome, Safari, Opera */
-}
-
 

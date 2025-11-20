@@ -1,0 +1,126 @@
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.btn-uiverse {
+    padding: 10px 25px;
+    border: unset;
+    border-radius: 15px;
+    color: #ffffff;
+    z-index: 1;
+    background: #1FA7AF;
+    position: relative;
+    font-weight: 1000;
+    font-size: 17px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+}
+
+.btn-uiverse::before {
+ content: "";
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 100%;
+ width: 0;
+ border-radius: 15px;
+ background-color: #177c82;
+ z-index: -1;
+ -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ transition: all 250ms
+}
+
+.btn-uiverse:hover {
+    color: #e8e8e8;
+}
+
+.btn-uiverse:hover::before {
+ width: 100%;
+}
+
+.btn-uiverse:active {
+  transform: scale(0.95);
+}
+
+/* warna bullet biasa */
+.swiper-pagination-bullet {
+    background: #c4c4c4 !important; /* abu-abu */
+    opacity: 1;
+}
+
+/* warna bullet yang aktif */
+.swiper-pagination-bullet-active {
+    background: #1FA7AF !important; /* hitam */
+}
+
+/* BUTTON WHATSAPP */ 
+.btn-wa {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: #00d757;
+}
+
+.sign-wa {
+  width: 100%;
+  transition-duration: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-wa svg {
+  width: 25px;
+}
+
+.sign-wa svg path {
+  fill: white;
+}
+.text-wa {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.25em;
+  font-weight: 600;
+  transition-duration: 0.3s;
+}
+
+.btn-wa:hover {
+  width: 165px;
+  border-radius: 45px;
+  transition-duration: 0.3s;
+}
+
+.btn-wa:hover .sign-wa {
+  width: 30%;
+  transition-duration: 0.3s;
+  padding-left: 10px;
+}
+
+.btn-wa:hover .text-wa {
+  opacity: 1;
+  width: 70%;
+  transition-duration: 0.3s;
+  padding-right: 10px;
+}
+.btn-wa:active {
+  transform: translate(2px, 2px);
+}
