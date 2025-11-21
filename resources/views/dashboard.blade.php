@@ -13,7 +13,7 @@
                 <input type="file" name="images[]" multiple class="hidden" accept="image/*" required>
             </label>
 
-            <button type="submit" class="bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600 transition">
+            <button type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">
                 Upload Event
             </button>
         </form>
@@ -63,7 +63,7 @@
                 <input type="file" name="images[]" multiple class="hidden" accept="image/*" required>
             </label>
 
-            <button type="submit" class="bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600 transition">
+            <button type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">
                 Upload Karya
             </button>
         </form>

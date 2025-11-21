@@ -7,6 +7,8 @@ use Livewire\Volt\Volt;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GalleryAdminController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PengajarController;
+use App\Models\Pengajar;
 
 // ----------------------
 // 🌐 HALAMAN UTAMA
@@ -14,8 +16,9 @@ use App\Http\Controllers\EventController;
 Route::get('/', function () {
     $galleryEvent = File::files(public_path('images/event'));
     $galleryKarya = File::files(public_path('images/karya'));
+    $pengajar = Pengajar::all();
     
-    return view('welcome', compact('galleryEvent', 'galleryKarya'));
+    return view('welcome', compact('galleryEvent', 'galleryKarya', 'pengajar'));
 })->name('home');
 
 // ----------------------
@@ -87,3 +90,14 @@ Route::prefix('admin/manage-event')->middleware('auth')->group(function () {
     Route::put('/update/{id}', [EventController::class, 'update'])->name('admin.manageevent.update');
 });
 
+// =======================
+// 🧑 Admin Pengajar
+// =======================
+Route::prefix('admin/pengajar')->middleware('auth')->group(function () {
+    Route::get('/', [PengajarController::class, 'index'])->name('admin.pengajar.index');
+    Route::get('/create', [PengajarController::class, 'create'])->name('admin.pengajar.create');
+    Route::post('/store', [PengajarController::class, 'store'])->name('admin.pengajar.store');
+    Route::get('/edit/{id}', [PengajarController::class, 'edit'])->name('admin.pengajar.edit');
+    Route::put('/update/{id}', [PengajarController::class, 'update'])->name('admin.pengajar.update');
+    Route::delete('/{id}', [PengajarController::class, 'destroy'])->name('admin.pengajar.destroy');
+});

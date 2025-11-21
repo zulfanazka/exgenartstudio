@@ -13,21 +13,21 @@
                 </div>
 
                 <div>
-                    <label class="block font-medium mb-1">Deskripsi</label>
-                    <!-- Boleh ditarik ke bawah (hanya vertikal) pada form tambah -->
-                    <textarea name="deskripsi" rows="1" class="w-full border rounded-lg px-3 py-2 resize-y min-h-[2.7rem]" required></textarea>
+                    <label class="block font-medium mb-1">Upload Gambar Event</label>
+                    <label class="cursor-pointer flex items-center border-2 border-dashed border-gray-300 rounded-lg py-2 mb-3 hover:border-teal-400 transition w-full">
+                        <span id="fileNameTambah" class="text-gray-500 pl-2">Pilih File</span>
+                        <input type="file" name="gambar" id="gambarTambah" class="hidden" accept="image/*" required>
+                    </label>
                 </div>
             </div>
 
             <div class="mt-4">
-                <label class="block font-medium mb-1">Upload Gambar Event</label>
-                <label class="cursor-pointer flex items-center border-2 border-dashed border-gray-300 rounded-lg p-3 mb-3 hover:border-teal-400 transition w-2/3 sm:w-1/2">
-                    <span id="fileNameTambah" class="text-gray-500 pl-2">Pilih File</span>
-                    <input type="file" name="gambar" id="gambarTambah" class="hidden" accept="image/*" required>
-                </label>
+                <label class="block font-medium mb-1">Deskripsi</label>
+                <!-- Boleh ditarik ke bawah (hanya vertikal) pada form tambah -->
+                <textarea name="deskripsi" rows="1" class="w-full border rounded-lg px-3 py-2 resize-y min-h-[2.7rem]" required></textarea>
             </div>
 
-            <button type="submit" class="bg-teal-500 text-white px-5 py-2 rounded hover:bg-teal-600 transition">
+            <button type="submit" class="bg-teal-500 text-white px-5 py-2 rounded-lg hover:bg-teal-600 transition">
                 Simpan Event
             </button>
         </form>

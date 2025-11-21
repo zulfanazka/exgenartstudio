@@ -15,6 +15,7 @@
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="photo" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Galeri') }}</flux:navlist.item>
                     <flux:navlist.item icon="calendar" :href="route('admin.manageevent.index')" :current="request()->routeIs('admin.manageevent.*')" wire:navigate>{{ __('Event') }}</flux:navlist.item>
+                    <flux:navlist.item icon="users" :href="route('admin.pengajar.index')" :current="request()->routeIs('admin.pengajar.*')" wire:navigate>{{ __('Pengajar') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 

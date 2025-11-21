@@ -102,13 +102,21 @@
 
             @if(isset($pengajar))
                 @foreach ($pengajar as $p)
-                    <div class="w-72 h-96 bg-white rounded-2xl shadow-xl flex-shrink-0 snap-start overflow-hidden">
-                        <img src="{{ asset('images/pengajar/' . $p->foto) }}" class="w-full h-full object-cover"
-                            alt="{{ $p->nama }}">
+                    <div class="w-72 h-auto bg-white rounded-2xl shadow-xl flex-shrink-0 snap-start overflow-hidden p-4">  
+                        <div class="w-full h-56 overflow-hidden rounded-xl mb-4">
+                            <img src="{{ asset('images/pengajar/' . $p->foto) }}" 
+                                class="w-full h-full object-cover" 
+                                alt="{{ $p->nama }}">
+                        </div>
+
+                        <h3 class="text-xl font-bold">{{ $p->nama }}</h3>
+
+                        <p class="text-gray-600 mt-2 text-sm">
+                            {{ $p->deskripsi }}
+                        </p>
                     </div>
                 @endforeach
             @endif
-
         </div>
     </section>
 
