@@ -118,3 +118,9 @@ Route::prefix('admin/pengajar')->middleware('auth')->group(function () {
     Route::put('/update/{id}', [PengajarController::class, 'update'])->name('admin.pengajar.update');
     Route::delete('/{id}', [PengajarController::class, 'destroy'])->name('admin.pengajar.destroy');
 });
+
+// ----------------------
+// 🔗 ROUTE ALIAS for Fortify compatibility
+// ----------------------
+// Fortify's TwoFactorAuthenticatedSessionController needs route 'login' to exist
+Route::get('/login', fn() => redirect()->route('admin.login'))->name('login');
