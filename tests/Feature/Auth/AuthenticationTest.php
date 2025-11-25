@@ -14,7 +14,7 @@ class AuthenticationTest extends TestCase
 
     public function test_login_screen_can_be_rendered(): void
     {
-        $response = $this->get(route('login'));
+        $response = $this->get(route('admin.login'));
 
         $response->assertStatus(200);
     }
@@ -82,7 +82,7 @@ class AuthenticationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post(route('logout'));
+        $response = $this->actingAs($user)->post(route('admin.logout'));
 
         $response->assertRedirect(route('home'));
 

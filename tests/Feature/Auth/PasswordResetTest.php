@@ -41,7 +41,7 @@ class PasswordResetTest extends TestCase
 
         Volt::test('auth.forgot-password')
             ->set('email', $user->email)
-            ->call('sendPasswordResetLink');
+            ->call('sendPasswordResetLink');    
 
         Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
             $response = $this->get(route('admin.password.reset', $notification->token));
