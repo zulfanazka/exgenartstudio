@@ -52,7 +52,7 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
@@ -65,4 +65,48 @@ select:focus[data-flux-control] {
     @apply size-4;
 } */
 
+/* Custom background override */
+@layer components {
+    body {
+        background-color: #ffffff !important;
+    }
 
+    [data-flux-main] {
+        background-color: #ffffff !important;
+    }
+
+    main {
+        background-color: #ffffff !important;
+    }
+
+    /* Menu items text and icon color - black instead of gray */
+    [data-flux-sidebar] [data-flux-navlist-item] {
+        color: #000000 !important;
+    }
+
+    [data-flux-sidebar] [data-flux-navlist-item] svg {
+        color: #000000 !important;
+        stroke: #000000 !important;
+        fill: none !important;
+    }
+
+    /* For filled icons if any */
+    [data-flux-sidebar] [data-flux-navlist-item] svg[fill]:not([fill="none"]) {
+        fill: #ffffff !important;
+    }
+
+    /* User profile text color - black */
+    [data-flux-sidebar] [data-flux-profile] {
+        color: #000000 !important;
+    }
+
+    [data-flux-sidebar] [data-flux-profile] span {
+        color: #000000 !important;
+    }
+
+    /* Avatar background and text color */
+    [data-flux-sidebar] [data-flux-profile] span[class*="bg-"] {
+        background-color: #000000 !important;
+        color: #000000 !important;
+    }
+}

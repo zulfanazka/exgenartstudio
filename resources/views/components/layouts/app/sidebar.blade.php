@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+    <body class="min-h-screen bg-white">
+        <flux:sidebar sticky stashable class="border-e border-gray-700" style="background-color: #1e6fa2ff;">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
             <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
@@ -12,7 +12,7 @@
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
+                <flux:navlist.group :heading="__('Menu')" class="grid">
                     <flux:navlist.item icon="photo" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Galeri') }}</flux:navlist.item>
                     <flux:navlist.item icon="calendar" :href="route('admin.manageevent.index')" :current="request()->routeIs('admin.manageevent.*')" wire:navigate>{{ __('Event') }}</flux:navlist.item>
                     <flux:navlist.item icon="users" :href="route('admin.pengajar.index')" :current="request()->routeIs('admin.pengajar.*')" wire:navigate>{{ __('Pengajar') }}</flux:navlist.item>
@@ -20,17 +20,7 @@
             </flux:navlist>
 
             <flux:spacer />
-
-            <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                {{ __('Documentation') }}
-                </flux:navlist.item>
-            </flux:navlist>
-
+            
             <!-- Desktop User Menu -->
             <flux:dropdown class="hidden lg:block" position="bottom" align="start">
                 <flux:profile
@@ -68,7 +58,7 @@
 
                     <flux:menu.separator />
 
-                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                    <form method="POST" action="{{ route('admin.logout') }}" class="w-full">
                         @csrf
                         <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full" data-test="logout-button">
                             {{ __('Log Out') }}
@@ -118,7 +108,7 @@
 
                     <flux:menu.separator />
 
-                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                    <form method="POST" action="{{ route('admin.logout') }}" class="w-full">
                         @csrf
                         <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full" data-test="logout-button">
                             {{ __('Log Out') }}

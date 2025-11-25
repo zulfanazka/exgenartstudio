@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 
@@ -11,7 +12,7 @@ use App\Http\Controllers\PengajarController;
 use App\Models\Pengajar;
 
 // ----------------------
-// 🌐 HALAMAN UTAMA
+// 🌐 HALAMAN UTAMA (PUBLIC)
 // ----------------------
 Route::get('/', function () {
     $galleryEvent = File::files(public_path('images/event'));
@@ -21,43 +22,59 @@ Route::get('/', function () {
     return view('welcome', compact('galleryEvent', 'galleryKarya', 'pengajar'));
 })->name('home');
 
-// ----------------------
-// 🧑‍💻 DASHBOARD USER
-// ----------------------
-Route::get('/dashboard', [GalleryAdminController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', 'settings/profile');
-
-    Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
-    Volt::route('settings/password', 'settings.password')->name('password.edit');
-    Volt::route('settings/appearance', 'settings.appearance')->name('appearance.edit');
-
-    Volt::route('settings/two-factor', 'settings.two-factor')
-        ->middleware(
-            when(
-                Features::canManageTwoFactorAuthentication()
-                    && Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword'),
-                ['password.confirm'],
-                [],
-            ),
-        )
-        ->name('two-factor.show');
-});
-
-require __DIR__.'/auth.php';
-
-// ----------------------
-// 🎨 GALLERY USER
-// ----------------------
-Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
-
 // =======================
-// 🧍‍♂️ EVENT LOMBA USER
+// 🧍‍♂️ EVENT LOMBA (PUBLIC)
 // =======================
 Route::get('/lomba', [EventController::class, 'publicIndex'])->name('lomba');
+
+// ----------------------
+// 🔐 ADMIN AUTH ROUTES
+// ----------------------
+Route::prefix('admin')->group(function () {
+    // Guest routes (login, register, forgot password)
+    Route::middleware('guest')->group(function () {
+        Volt::route('login', 'auth.login')->name('admin.login');
+        Volt::route('register', 'auth.register')->name('admin.register');
+        Volt::route('forgot-password', 'auth.forgot-password')->name('admin.password.request');
+        Volt::route('reset-password/{token}', 'auth.reset-password')->name('admin.password.reset');
+    });
+    
+    // Auth routes (verify email)
+    Route::middleware('auth')->group(function () {
+        Volt::route('verify-email', 'auth.verify-email')->name('verification.notice');
+        Route::get('verify-email/{id}/{hash}', App\Http\Controllers\Auth\VerifyEmailController::class)
+            ->middleware(['signed', 'throttle:6,1'])
+            ->name('verification.verify');
+    });
+    
+    // Logout
+    Route::post('logout', App\Livewire\Actions\Logout::class)->name('admin.logout');
+    
+    // Dashboard admin
+    Route::get('/dashboard', [GalleryAdminController::class, 'index'])
+        ->middleware(['auth', 'verified'])
+        ->name('dashboard');
+    
+    // Settings admin
+    Route::middleware(['auth'])->group(function () {
+        Route::redirect('settings', 'settings/profile');
+        
+        Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
+        Volt::route('settings/password', 'settings.password')->name('password.edit');
+        Volt::route('settings/appearance', 'settings.appearance')->name('appearance.edit');
+        
+        Volt::route('settings/two-factor', 'settings.two-factor')
+            ->middleware(
+                when(
+                    Features::canManageTwoFactorAuthentication()
+                        && Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword'),
+                    ['password.confirm'],
+                    [],
+                ),
+            )
+            ->name('two-factor.show');
+    });
+});
 
 // ----------------------
 // 🖼️ GALLERY KARYA ADMIN

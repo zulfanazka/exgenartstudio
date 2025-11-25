@@ -116,6 +116,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
             autofocus
             autocomplete="email"
             placeholder="email@example.com"
+            class="h-12"
         />
 
         <!-- Password -->
@@ -128,10 +129,11 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 autocomplete="current-password"
                 :placeholder="__('Password')"
                 viewable
+                class="h-12"
             />
 
-            @if (Route::has('password.request'))
-                <flux:link class="absolute top-0 text-sm end-0" :href="route('password.request')" wire:navigate>
+            @if (Route::has('admin.password.request'))
+                <flux:link class="absolute top-0 text-sm end-0" :href="route('admin.password.request')" wire:navigate>
                     {{ __('Forgot your password?') }}
                 </flux:link>
             @endif
@@ -141,16 +143,16 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <flux:checkbox wire:model="remember" :label="__('Remember me')" />
 
         <div class="flex items-center justify-end">
-            <flux:button variant="primary" type="submit" class="w-full" data-test="login-button">
+            <flux:button variant="primary" type="submit" class="w-full h-12 text-lg" data-test="login-button">
                 {{ __('Log in') }}
             </flux:button>
         </div>
     </form>
 
-    @if (Route::has('register'))
+    @if (Route::has('admin.register'))
         <div class="space-x-1 text-sm text-center rtl:space-x-reverse text-zinc-600 dark:text-zinc-400">
             <span>{{ __('Don\'t have an account?') }}</span>
-            <flux:link :href="route('register')" wire:navigate>{{ __('Sign up') }}</flux:link>
+            <flux:link :href="route('admin.register')" wire:navigate>{{ __('Register') }}</flux:link>
         </div>
     @endif
 </div>
