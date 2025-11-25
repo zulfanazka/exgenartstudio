@@ -35,6 +35,8 @@ Route::prefix('admin')->group(function () {
     Route::middleware('guest')->group(function () {
         Volt::route('login', 'auth.login')->name('admin.login');
         Volt::route('register', 'auth.register')->name('admin.register');
+        Volt::route('forgot-password', 'auth.forgot-password')->name('admin.password.request');
+        Volt::route('reset-password/{token}', 'auth.reset-password')->name('admin.password.reset');
     });
     
     // Auth routes (verify email)
