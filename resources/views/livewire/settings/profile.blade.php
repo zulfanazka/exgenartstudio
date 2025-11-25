@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use Livewire\Volt\Component;
 
-new class extends Component {
+new #[Layout('components.layouts.app', ['title' => 'Admin Settings'])] class extends Component {
     public string $name = '';
     public string $email = '';
 

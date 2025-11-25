@@ -1,3 +1,5 @@
+@props(['title' => null])
+
 <x-layouts.app.sidebar :title="$title ?? null">
     <flux:main container class="!bg-black">
         {{ $slot }}

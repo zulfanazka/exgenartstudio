@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informasi Lomba | ExGen Art Studio</title>
+    
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
+    
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -81,7 +85,7 @@
                                 {{ $event->description }}
                             </div>
 
-                            <a href="#daftar"
+                            <a href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20untuk%20{{ urlencode($event->title) }}" target="_blank"
                                 class="inline-flex items-center justify-center px-10 py-3 text-base font-bold text-white transition-all duration-200 bg-blue-600 rounded-full hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1">
                                 Daftar Sekarang
                             </a>

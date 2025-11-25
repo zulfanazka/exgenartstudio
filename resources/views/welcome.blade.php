@@ -73,7 +73,12 @@
     </section>
 
     <section id="pengajar"
-        class="relative w-full min-h-screen flex items-center justify-center bg-white overflow-hidden">
+        class="relative w-full min-h-screen flex flex-col items-center justify-center bg-white overflow-hidden py-20">
+        <div class="mb-12 md:mb-16" data-aos="zoom-in" data-aos-duration="1000">
+            <h2 class="text-4xl md:text-6xl font-black text-black drop-shadow-lg tracking-tight text-center">
+                Pengajar
+            </h2>
+        </div>
         <div class="swiper swiper-pengajar w-full" data-aos="fade-up" data-aos-duration="1000">
             <div class="swiper-wrapper">
                 @if (isset($pengajar))
@@ -140,7 +145,7 @@
                             <li>Strategi cepat menyelesaikan gambar tepat waktu</li>
                         </ul>
                         <div class="flex justify-center pb-2 mt-6">
-                            <div class="transform md:scale-125"><button class="btn-uiverse">Daftar</button></div>
+                            <div class="transform md:scale-125"><a href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Lomba" target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
                         </div>
                     </div>
                 </div>
@@ -161,7 +166,7 @@
                             <li>Pengembangan gaya lukisan personal</li>
                         </ul>
                         <div class="flex justify-center pb-2 mt-6">
-                            <div class="transform md:scale-125"><button class="btn-uiverse">Daftar</button></div>
+                            <div class="transform md:scale-125"><a href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Seni%20Lukis" target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
                         </div>
                     </div>
                 </div>
@@ -182,7 +187,7 @@
                             <li>Teknik menghias gambar agar lebih hidup</li>
                         </ul>
                         <div class="flex justify-center pb-2 mt-6">
-                            <div class="transform md:scale-125"><button class="btn-uiverse">Daftar</button></div>
+                            <div class="transform md:scale-125"><a href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Fun%20Art" target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
                         </div>
                     </div>
                 </div>
@@ -204,7 +209,7 @@
                             <li>Bonus: Bimbingan portofolio tes masuk</li>
                         </ul>
                         <div class="flex justify-center pb-2 mt-6">
-                            <div class="transform md:scale-125"><button class="btn-uiverse">Daftar</button></div>
+                            <div class="transform md:scale-125"><a href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20FSRD" target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
                         </div>
                     </div>
                 </div>
@@ -325,25 +330,26 @@
         </div>
     </section>
 
-    <footer class="bg-white text-gray-700 py-10 px-6 md:px-20 border-t border-gray-200">
+    <footer class="bg-white text-gray-700 py-10 px-6 md:px-20 border-t border-gray-200 mt-auto">
         <div
-            class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-10 text-center md:text-left">
-            <div class="flex-shrink-0"><img src="{{ asset('images/logo.png') }}" alt="Logo"
-                    class="h-24 mx-auto md:mx-0"></div>
+            class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-10 text-center md:text-left">
+            <div class="flex-shrink-0">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-20 mx-auto md:mx-0">
+            </div>
             <div>
                 <h3 class="font-semibold text-lg">ExGen Art Studio</h3>
-                <p class="text-sm text-gray-500 mt-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <div class="mt-3 text-sm">
-                    <p class="text-gray-500">📧 E-mail: apotek@gmail.com</p>
-                    <p class="text-gray-500">📞 Phone: 12345678910</p>
+                <p class="text-sm text-gray-500 mt-1">Wadah kreativitas untuk generasi muda.</p>
+                <div class="mt-3 text-sm space-y-1">
+                    <p>📧 exgen.artstudio@gmail.com</p>
+                    <p>📞 +62 895-1849-5415</p>
                 </div>
             </div>
             <div>
                 <h3 class="font-semibold mb-2 text-lg">Company</h3>
                 <ul class="text-sm space-y-1 text-gray-500">
-                    <li><a href="#profile" class="hover:text-blue-500 transition">Profile</a></li>
-                    <li><a href="#product" class="hover:text-blue-500 transition">Product</a></li>
-                    <li><a href="#contact" class="hover:text-blue-500 transition">Contact</a></li>
+                    <li><a href="#home" class="hover:text-blue-500 transition">Home</a></li>
+                    <li><a href="#gallery-event" class="hover:text-blue-500 transition">Gallery</a></li>
+                    <li><a href="/lomba" class="hover:text-blue-500 transition">Event</a></li>
                 </ul>
             </div>
         </div>

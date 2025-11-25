@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('Event')">
+<x-layouts.app :title="__('Admin Event')">
     <div class="max-w-6xl mx-auto py-10 relative">
 
         {{-- Form Upload Event --}}

@@ -13,7 +13,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
-new #[Layout('components.layouts.auth')] class extends Component {
+new #[Layout('components.layouts.auth', ['title' => 'Admin Login'])] class extends Component {
     #[Validate('required|string|email')]
     public string $email = '';
 
@@ -131,12 +131,6 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 viewable
                 class="h-12"
             />
-
-            @if (Route::has('admin.password.request'))
-                <flux:link class="absolute top-0 text-sm end-0" :href="route('admin.password.request')" wire:navigate>
-                    {{ __('Forgot your password?') }}
-                </flux:link>
-            @endif
         </div>
 
         <!-- Remember Me -->

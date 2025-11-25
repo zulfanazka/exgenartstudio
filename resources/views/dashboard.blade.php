@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('Galeri')">
+<x-layouts.app :title="__('Galeri Admin')">
 
     <div class="max-w-6xl mx-auto py-10">
 

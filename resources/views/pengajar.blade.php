@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('pengajar')">
+<x-layouts.app :title="__('Admin Pengajar')">
     <div class="max-w-6xl mx-auto py-10 relative">
 
         {{-- Form Upload Pengajar --}}
