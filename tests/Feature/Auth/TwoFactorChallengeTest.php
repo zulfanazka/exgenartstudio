@@ -20,7 +20,7 @@ class TwoFactorChallengeTest extends TestCase
 
         $response = $this->get(route('two-factor.login'));
 
-        $response->assertRedirect(route('admin.login'));
+        $response->assertRedirect(route('login'));
     }
 
     public function test_two_factor_challenge_can_be_rendered(): void
