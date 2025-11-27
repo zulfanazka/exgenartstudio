@@ -5,7 +5,7 @@
         {{-- Upload Event --}}
         <form action="{{ route('event.store') }}" method="POST" enctype="multipart/form-data" class="mb-6">
             @csrf
-            <label class="block mb-2 text-lg font-semibold">Upload Foto Event:</label>
+            <label class="block mb-2 text-lg font-semibold">Upload Foto Kelas:</label>
 
             {{-- Input File Custom --}}
             <label class="cursor-pointer flex items-center border-2 border-dashed border-gray-300 rounded-lg p-3 mb-3 hover:border-teal-400 transition w-2/3 sm:w-1/2">
@@ -13,7 +13,7 @@
                 <input type="file" name="images[]" multiple class="hidden" accept="image/*" required>
             </label>
 
-            <button type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">
+            <button type="submit" class="bg-[#1FA7AF] text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">
                 Upload Event
             </button>
         </form>
@@ -63,7 +63,7 @@
                 <input type="file" name="images[]" multiple class="hidden" accept="image/*" required>
             </label>
 
-            <button type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">
+            <button type="submit" class="bg-[#1FA7AF] text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">
                 Upload Karya
             </button>
         </form>

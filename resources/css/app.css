@@ -92,7 +92,7 @@ select:focus[data-flux-control] {
 
     /* For filled icons if any */
     [data-flux-sidebar] [data-flux-navlist-item] svg[fill]:not([fill="none"]) {
-        fill: #ffffff !important;
+        fill: #000000 !important;
     }
 
     /* User profile text color - black */
@@ -108,5 +108,23 @@ select:focus[data-flux-control] {
     [data-flux-sidebar] [data-flux-profile] span[class*="bg-"] {
         background-color: #000000 !important;
         color: #000000 !important;
+    }
+
+    /* Active menu item background - black */
+    [data-flux-sidebar] [data-flux-navlist-item][data-current] {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        /* Ensure text is white on black bg */
+    }
+
+    /* Ensure icon color is white for active item */
+    [data-flux-sidebar] [data-flux-navlist-item][data-current] svg {
+        color: #ffffff !important;
+        stroke: #ffffff !important;
+    }
+
+    /* Menu heading text color - white */
+    [data-flux-sidebar] .flux-group-heading {
+        color: #ffffff !important;
     }
 }

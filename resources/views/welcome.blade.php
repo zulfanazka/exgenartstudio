@@ -8,24 +8,66 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // Kita timpa font 'sans' bawaan tailwind dengan Clear Sans
+                        sans: ['Clear Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
 
     <style>
-        /* Font inter agar mirip desain */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+        /* DEFINISI FONT */
+        /* Pastikan Anda punya file font Bold-nya. Jika tidak ada, browser akan memaksakan Regular jadi tebal (kurang rapi) */
+
+        @font-face {
+            font-family: 'Clear Sans';
+            src: url('font/ClearSans-Regular.woff') format('woff');
+            font-weight: 400;
+            /* Normal */
+            font-style: normal;
+        }
+
+        /* TAMBAHKAN INI JIKA ADA FILE BOLDNYA (Sangat Disarankan) */
+        @font-face {
+            font-family: 'Clear Sans';
+            src: url('font/ClearSans-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* CSS RESET UNTUK MEMAKSA SEMUA ELEMENT MEMAKAI FONT INI */
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        a,
+        span,
+        button,
+        li,
+        div {
+            font-family: 'Clear Sans', sans-serif !important;
+        }
 
         body {
-            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
 
-        /* CSS RESET UNTUK SWIPER */
+        /* SWIPER RESET */
         .swiper-slide {
             width: 100% !important;
             height: auto;
@@ -40,36 +82,63 @@
 
 <body class="font-sans bg-white text-gray-800">
 
-    <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50" data-aos="fade-down" data-aos-duration="1000">
-        <div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-6 md:px-10"> 
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50 transition-all duration-300" id="navbar"
+        data-aos="fade-down" data-aos-duration="1000">
+
+        <div class="max-w-7xl mx-auto flex items-center justify-start gap-12 py-4 px-6 md:px-10">
+
             <div class="flex items-center gap-8 font-semibold">
-                <a href="#home" class="hover:text-blue-500 transition">Home</a>
-                <a href="#gallery-event" class="hover:text-blue-500 transition">Gallery</a>
-                <a href="/lomba" class="hover:text-blue-500 transition">Event</a>
+                <a href="{{ Request::is('/') ? '#home' : url('/') }}"
+                    class="nav-link transition duration-300 {{ Request::is('/') ? 'text-[#1FA7AF] active-on-scroll' : 'text-gray-600 hover:text-[#1FA7AF]' }}"
+                    data-target="home">
+                    Home
+                </a>
+
+                <a href="{{ Request::is('/') ? '#gallery-event' : url('/#gallery-event') }}"
+                    class="nav-link transition duration-300 {{ Request::is('/') ? 'text-gray-600 active-on-scroll' : 'text-gray-600 hover:text-[#1FA7AF]' }}"
+                    data-target="gallery-event">
+                    Gallery
+                </a>
+
+                <a href="/lomba"
+                    class="nav-link transition duration-300 {{ Request::is('lomba*') ? 'text-[#1FA7AF]' : 'text-gray-600 hover:text-[#1FA7AF]' }}">
+                    Event
+                </a>
             </div>
+
         </div>
     </nav>
 
     <section id="home" class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full -z-10">
-            <img src="{{ asset('images/bg1.png') }}" alt="background" class="w-full h-full object-cover opacity-80">
+
+        <div class="absolute top-0 left-0 w-full h-full -z-20">
+            <img src="{{ asset('images/bg10.png') }}" alt="background"
+                class="w-full h-full object-cover scale-125 origin-center" />
         </div>
 
         <div
-            class="hidden lg:block absolute right-0 top-1/2 transform -translate-y-1/2 h-full w-auto max-h-screen z-0 pointer-events-none">
+            class="hidden lg:block absolute right-0 top-1/2 transform -translate-y-1/2 h-full w-auto max-h-screen pointer-events-none -z-20">
+
             <img src="{{ asset('images/exter.png') }}" alt="Exter" class="h-full w-auto object-cover"
-                data-aos="fade-left" data-aos-duration="1500" data-aos-delay="300">
+                data-aos="fade-left" data-aos-duration="1500" data-aos-delay="200">
+
         </div>
 
         <div class="relative z-10 flex flex-col items-center justify-center px-4 text-center" data-aos="fade-up"
             data-aos-duration="1200">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo ExGen" class="h-32 md:h-48 w-auto mb-6 drop-shadow-lg">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 text-gray-800 drop-shadow-sm">EXGEN ART STUDIO</h1>
-            <p class="max-w-2xl mx-auto text-base md:text-xl text-gray-700 leading-relaxed">
+
+            <img src="{{ asset('images/logo.png') }}" alt="Logo ExGen" class="h-32 md:h-64 w-auto mb-6 drop-shadow-lg">
+
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 text-gray-800 drop-shadow-sm">
+                EXGEN ART STUDIO
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-base md:text-xl text-black leading-relaxed" style="color: black;">
                 Kelas seni yang didirikan oleh salah satu alumni fakultas seni rupa dan desain ITB yang berfokus pada
-                penyiapan bibit-bibit unggul kreatif di bidang seni rupa dan desain.
+                penyiapan bibit-bibit unggul kreatif di bidang seni rupa dan desain.
             </p>
         </div>
+
     </section>
 
     <section id="pengajar"
@@ -91,15 +160,13 @@
                                         class="w-[320px] h-[450px] md:w-[500px] md:h-[700px] bg-[#c8c3c3] rounded-[3rem] overflow-hidden flex-shrink-0 shadow-2xl relative z-10">
                                         @if ($p->foto)
                                             <img src="{{ asset('images/pengajar/' . $p->foto) }}"
-                                                class="w-full h-full object-cover pointer-events-none"
-                                                alt="{{ $p->nama }}">
+                                                class="w-full h-full object-cover pointer-events-none" alt="{{ $p->nama }}">
                                         @else
                                             <div class="w-full h-full bg-[#c8c3c3]"></div>
                                         @endif
                                     </div>
                                     <div class="flex-1 text-center md:text-left max-w-2xl px-4 md:px-0">
-                                        <h2
-                                            class="text-5xl md:text-7xl font-bold text-black mb-8 leading-tight tracking-tight">
+                                        <h2 class="text-5xl md:text-7xl font-bold text-black mb-8 leading-tight tracking-tight">
                                             {{ $p->nama }}
                                         </h2>
                                         <p class="text-gray-500 text-lg md:text-2xl leading-relaxed font-medium">
@@ -137,6 +204,10 @@
                         <span
                             class="arrow-icon md:hidden text-2xl text-gray-500 transition-transform duration-300">▼</span>
                     </div>
+                    <div class="w-full h-40 md:h-56 rounded-2xl overflow-hidden bg-gray-200 shadow-sm mt-4 md:mt-6">
+                        <img src="{{ asset('images/plomba.jpeg') }}" class="w-full h-full object-cover"
+                            alt="Gambar Kelas Lomba">
+                    </div>
                     <div class="card-content hidden md:flex flex-col justify-between h-full mt-4 md:mt-6">
                         <ul
                             class="text-left text-gray-700 text-sm md:text-lg font-medium space-y-3 pl-2 md:pl-4 list-disc list-outside leading-relaxed">
@@ -144,7 +215,7 @@
                             <li>Belajar penambahan objek gambar ala juara</li>
                             <li>Strategi cepat menyelesaikan gambar tepat waktu</li>
                         </ul>
-                        <div class="flex justify-center pb-2 mt-6">
+                        <div class="flex justify-center pb-2 mt-2">
                             <div class="transform md:scale-125"><a
                                     href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Lomba"
                                     target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
@@ -160,6 +231,10 @@
                         <span
                             class="arrow-icon md:hidden text-2xl text-gray-500 transition-transform duration-300">▼</span>
                     </div>
+                    <div class="w-full h-40 md:h-56 rounded-2xl overflow-hidden bg-gray-200 shadow-sm mt-4 md:mt-6">
+                        <img src="{{ asset('images/lukis.jpeg') }}" class="w-full h-full object-cover"
+                            alt="Gambar Kelas Seni Lukis">
+                    </div>
                     <div class="card-content hidden md:flex flex-col justify-between h-full mt-4 md:mt-6">
                         <ul
                             class="text-left text-gray-700 text-sm md:text-lg font-medium space-y-3 pl-2 md:pl-4 list-disc list-outside leading-relaxed">
@@ -167,7 +242,7 @@
                             <li>Eksplorasi teknik <i>Mix Media</i></li>
                             <li>Pengembangan gaya lukisan personal</li>
                         </ul>
-                        <div class="flex justify-center pb-2 mt-6">
+                        <div class="flex justify-center pb-2 mt-2">
                             <div class="transform md:scale-125"><a
                                     href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Seni%20Lukis"
                                     target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
@@ -183,6 +258,10 @@
                         <span
                             class="arrow-icon md:hidden text-2xl text-gray-500 transition-transform duration-300">▼</span>
                     </div>
+                    <div class="w-full h-40 md:h-56 rounded-2xl overflow-hidden bg-gray-200 shadow-sm mt-4 md:mt-6">
+                        <img src="{{ asset('images/funart.jpeg') }}" class="w-full h-full object-cover"
+                            alt="Gambar Kelas Fun Art">
+                    </div>
                     <div class="card-content hidden md:flex flex-col justify-between h-full mt-4 md:mt-6">
                         <ul
                             class="text-left text-gray-700 text-sm md:text-lg font-medium space-y-3 pl-2 md:pl-4 list-disc list-outside leading-relaxed">
@@ -190,7 +269,7 @@
                             <li>Belajar menambahkan objek gambar kreatif</li>
                             <li>Teknik menghias gambar agar lebih hidup</li>
                         </ul>
-                        <div class="flex justify-center pb-2 mt-6">
+                        <div class="flex justify-center pb-2 mt-2">
                             <div class="transform md:scale-125"><a
                                     href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Fun%20Art"
                                     target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
@@ -202,9 +281,14 @@
                     class="bg-white/90 p-6 md:p-12 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl w-full hover:scale-105 transition-all duration-300 flex flex-col justify-between cursor-pointer md:cursor-default h-auto md:min-h-[500px] group">
                     <div class="flex justify-between items-center w-full">
                         <h3 class="text-2xl md:text-4xl font-extrabold text-gray-900 tracking-tight text-left">Kelas
-                            FSRD</h3>
+                            FSRD
+                        </h3>
                         <span
                             class="arrow-icon md:hidden text-2xl text-gray-500 transition-transform duration-300">▼</span>
+                    </div>
+                    <div class="w-full h-40 md:h-56 rounded-2xl overflow-hidden bg-gray-200 shadow-sm mt-4 md:mt-6">
+                        <img src="{{ asset('images/fsrd.jpeg') }}" class="w-full h-full object-cover"
+                            alt="Gambar Kelas FSRD">
                     </div>
                     <div class="card-content hidden md:flex flex-col justify-between h-full mt-4 md:mt-6">
                         <ul
@@ -214,7 +298,7 @@
                             <li>Gambar naratif, konstruktif, dan perspektif</li>
                             <li>Bonus: Bimbingan portofolio tes masuk</li>
                         </ul>
-                        <div class="flex justify-center pb-2 mt-6">
+                        <div class="flex justify-center pb-2 mt-2">
                             <div class="transform md:scale-125"><a
                                     href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20FSRD"
                                     target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
@@ -225,7 +309,8 @@
         </div>
     </section>
 
-    <section class="py-12 md:py-16 bg-white text-black overflow-hidden min-h-screen flex items-center">
+    <section id="gallery-event"
+        class="py-12 md:py-16 bg-white text-black overflow-hidden min-h-screen flex items-center">
         <div class="max-w-7xl mx-auto px-6 flex flex-col gap-12 md:gap-20">
 
             <div id="gallery-event" class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-24">
@@ -290,8 +375,7 @@
 
     <section class="relative py-32 md:py-48 overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-full -z-10">
-            <img src="{{ asset('images/bg2.png') }}" alt="background"
-                class="w-full h-full object-cover object-center">
+            <img src="{{ asset('images/bg2.png') }}" alt="background" class="w-full h-full object-cover object-center">
             <div class="absolute inset-0 bg-gradient-to-r from-white/60 to-transparent"></div>
         </div>
         <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10" data-aos="fade-up" data-aos-duration="1200">
@@ -387,6 +471,55 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Hanya jalankan script ini jika kita berada di halaman utama (Home)
+            // Kita cek apakah elemen dengan ID 'home' ada di halaman ini
+            const homeSection = document.getElementById('home');
+
+            if (homeSection) {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('.active-on-scroll');
+
+                window.addEventListener('scroll', () => {
+                    let current = '';
+
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+
+                        // -150 pixel untuk trigger lebih awal sebelum garis section pas di atas
+                        if (window.scrollY >= (sectionTop - 150)) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+
+                    navLinks.forEach(link => {
+                        // Hapus warna aktif dari semua link scroll
+                        link.classList.remove('text-[#1FA7AF]');
+                        link.classList.add('text-gray-600');
+
+                        // Tambahkan warna aktif jika ID section cocok dengan data-target link
+                        if (link.getAttribute('data-target') === current) {
+                            link.classList.remove('text-gray-600');
+                            link.classList.add('text-[#1FA7AF]');
+                        }
+                    });
+
+                    // Khusus jika scroll di paling atas (top 0), paksa Home aktif
+                    if (window.scrollY < 100) {
+                        const homeLink = document.querySelector('a[data-target="home"]');
+                        if (homeLink) {
+                            navLinks.forEach(l => l.classList.remove('text-[#1FA7AF]'));
+                            homeLink.classList.add('text-[#1FA7AF]');
+                            homeLink.classList.remove('text-gray-600');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
         // INIT AOS
         AOS.init({
             once: false,
@@ -413,7 +546,7 @@
         }
 
         // SWIPER INIT
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const commonConfig = {
                 slidesPerView: 1,
                 spaceBetween: 0,

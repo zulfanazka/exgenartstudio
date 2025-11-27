@@ -5,47 +5,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informasi Lomba | ExGen Art Studio</title>
-    
+
     <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // Kita timpa font 'sans' bawaan tailwind dengan Clear Sans
+                        sans: ['Clear Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
 
     <style>
+        /* DEFINISI FONT */
+        /* Pastikan Anda punya file font Bold-nya. Jika tidak ada, browser akan memaksakan Regular jadi tebal (kurang rapi) */
+
+        @font-face {
+            font-family: 'Clear Sans';
+            src: url('font/ClearSans-Regular.woff') format('woff');
+            font-weight: 400;
+            /* Normal */
+            font-style: normal;
+        }
+
+        /* TAMBAHKAN INI JIKA ADA FILE BOLDNYA (Sangat Disarankan) */
+        @font-face {
+            font-family: 'Clear Sans';
+            src: url('font/ClearSans-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* CSS RESET UNTUK MEMAKSA SEMUA ELEMENT MEMAKAI FONT INI */
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        a,
+        span,
+        button,
+        li,
+        div {
+            font-family: 'Clear Sans', sans-serif !important;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
-        /* CSS Wajib untuk memotong teks (Line Clamp) */
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            /* Maksimal 2 baris Judul */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .line-clamp-4 {
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            /* Maksimal 4 baris Deskripsi */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        /* SWIPER RESET */
+        .swiper-slide {
+            width: 100% !important;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
     </style>
 </head>
 
 <body class="font-sans bg-white text-gray-800 antialiased flex flex-col min-h-screen">
 
-    <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-6 md:px-10">
-            <div class="flex items-center gap-8 font-semibold text-gray-700">
-                <a href="/" class="hover:text-blue-500 transition">Home</a>
-                <a href="/#gallery-event" class="hover:text-blue-500 transition">Gallery</a>
-                <a href="#event" class="hover:text-blue-500 transition">Event</a>
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50 transition-all duration-300" id="navbar"
+        data-aos="fade-down" data-aos-duration="1000">
+
+        <div class="max-w-7xl mx-auto flex items-center justify-start gap-12 py-4 px-6 md:px-10">
+
+            <div class="flex items-center gap-8 font-semibold">
+                <a href="{{ Request::is('/') ? '#home' : url('/') }}"
+                    class="nav-link transition duration-300 {{ Request::is('/') ? 'text-[#1FA7AF] active-on-scroll' : 'text-gray-600 hover:text-[#1FA7AF]' }}"
+                    data-target="home">
+                    Home
+                </a>
+
+                <a href="{{ Request::is('/') ? '#gallery-event' : url('/#gallery-event') }}"
+                    class="nav-link transition duration-300 {{ Request::is('/') ? 'text-gray-600 active-on-scroll' : 'text-gray-600 hover:text-[#1FA7AF]' }}"
+                    data-target="gallery-event">
+                    Gallery
+                </a>
+
+                <a href="/lomba"
+                    class="nav-link transition duration-300 {{ Request::is('lomba*') ? 'text-[#1FA7AF]' : 'text-gray-600 hover:text-[#1FA7AF]' }}">
+                    Event
+                </a>
             </div>
+
         </div>
     </nav>
 
@@ -65,14 +124,12 @@
                         <div class="flex-shrink-0 w-full md:w-auto flex justify-center">
                             <div
                                 class="w-[300px] h-[420px] md:w-[350px] md:h-[500px] bg-gray-100 rounded-2xl shadow-lg overflow-hidden relative">
-                                <img src="{{ asset('images/event-lomba/' . $event->photo) }}"
-                                    alt="Poster {{ $event->title }}"
+                                <img src="{{ asset('images/event-lomba/' . $event->photo) }}" alt="Poster {{ $event->title }}"
                                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                             </div>
                         </div>
 
-                        <div
-                            class="w-full md:flex-1 flex flex-col items-center md:items-start text-center md:text-left py-2">
+                        <div class="w-full md:flex-1 flex flex-col items-center md:items-start text-center md:text-left py-2">
 
                             <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight line-clamp-2"
                                 title="{{ $event->title }}">
@@ -84,7 +141,8 @@
                                 {{ $event->description }}
                             </div>
 
-                            <a href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20untuk%20{{ urlencode($event->title) }}" target="_blank"
+                            <a href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20untuk%20{{ urlencode($event->title) }}"
+                                target="_blank"
                                 class="inline-flex items-center justify-center px-10 py-3 text-base font-bold text-white transition-all duration-200 bg-blue-600 rounded-full hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1">
                                 Daftar Sekarang
                             </a>
@@ -141,6 +199,68 @@
         </div>
     </footer>
 
+    <a href="https://wa.me/6289518495415" target="_blank"
+        class="fixed bottom-6 right-6 z-50 transform scale-125 origin-bottom-right transition-transform duration-300 hover:scale-135">
+        <button class="btn-wa">
+            <div class="sign-wa">
+                <svg class="socialSvg whatsappSvg" viewBox="0 0 16 16">
+                    <path
+                        d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z">
+                    </path>
+                </svg>
+            </div>
+            <div class="text-wa">WhatsApp</div>
+        </button>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Hanya jalankan script ini jika kita berada di halaman utama (Home)
+            // Kita cek apakah elemen dengan ID 'home' ada di halaman ini
+            const homeSection = document.getElementById('home');
+
+            if (homeSection) {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('.active-on-scroll');
+
+                window.addEventListener('scroll', () => {
+                    let current = '';
+
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+
+                        // -150 pixel untuk trigger lebih awal sebelum garis section pas di atas
+                        if (window.scrollY >= (sectionTop - 150)) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+
+                    navLinks.forEach(link => {
+                        // Hapus warna aktif dari semua link scroll
+                        link.classList.remove('text-[#1FA7AF]');
+                        link.classList.add('text-gray-600');
+
+                        // Tambahkan warna aktif jika ID section cocok dengan data-target link
+                        if (link.getAttribute('data-target') === current) {
+                            link.classList.remove('text-gray-600');
+                            link.classList.add('text-[#1FA7AF]');
+                        }
+                    });
+
+                    // Khusus jika scroll di paling atas (top 0), paksa Home aktif
+                    if (window.scrollY < 100) {
+                        const homeLink = document.querySelector('a[data-target="home"]');
+                        if (homeLink) {
+                            navLinks.forEach(l => l.classList.remove('text-[#1FA7AF]'));
+                            homeLink.classList.add('text-[#1FA7AF]');
+                            homeLink.classList.remove('text-gray-600');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

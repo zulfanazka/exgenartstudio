@@ -6,7 +6,7 @@
         @include('partials.head')
     </head>
     <body class="min-h-screen bg-white">
-        <flux:sidebar sticky stashable class="border-e border-gray-700" style="background-color: #1e6fa2ff;">
+        <flux:sidebar sticky stashable class="border-e border-gray-700" style="background-color: #1FA7AF;">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
             <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
