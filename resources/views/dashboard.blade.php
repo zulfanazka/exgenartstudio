@@ -14,7 +14,7 @@
             </label>
 
             <button type="submit" class="bg-[#1FA7AF] text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">
-                Upload Event
+                Upload Foto
             </button>
         </form>
 
@@ -64,7 +64,7 @@
             </label>
 
             <button type="submit" class="bg-[#1FA7AF] text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">
-                Upload Karya
+                Upload Foto
             </button>
         </form>
 

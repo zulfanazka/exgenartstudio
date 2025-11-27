@@ -10,14 +10,16 @@
     <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        // Kita timpa font 'sans' bawaan tailwind dengan Clear Sans
                         sans: ['Clear Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
                     },
                 }
@@ -26,18 +28,13 @@
     </script>
 
     <style>
-        /* DEFINISI FONT */
-        /* Pastikan Anda punya file font Bold-nya. Jika tidak ada, browser akan memaksakan Regular jadi tebal (kurang rapi) */
-
         @font-face {
             font-family: 'Clear Sans';
             src: url('font/ClearSans-Regular.woff') format('woff');
             font-weight: 400;
-            /* Normal */
             font-style: normal;
         }
 
-        /* TAMBAHKAN INI JIKA ADA FILE BOLDNYA (Sangat Disarankan) */
         @font-face {
             font-family: 'Clear Sans';
             src: url('font/ClearSans-Bold.woff') format('woff');
@@ -45,7 +42,6 @@
             font-style: normal;
         }
 
-        /* CSS RESET UNTUK MEMAKSA SEMUA ELEMENT MEMAKAI FONT INI */
         body,
         h1,
         h2,
@@ -66,15 +62,9 @@
             overflow-x: hidden;
         }
 
-        /* SWIPER RESET */
-        .swiper-slide {
-            width: 100% !important;
-            height: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
+        /* Smooth transition untuk line-clamp jika didukung browser */
+        .description-text {
+            transition: all 0.3s ease;
         }
     </style>
 </head>
@@ -83,80 +73,87 @@
 
     <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50 transition-all duration-300" id="navbar"
         data-aos="fade-down" data-aos-duration="1000">
-
         <div class="max-w-7xl mx-auto flex items-center justify-start gap-12 py-4 px-6 md:px-10">
-
             <div class="flex items-center gap-8 font-semibold">
                 <a href="{{ Request::is('/') ? '#home' : url('/') }}"
                     class="nav-link transition duration-300 {{ Request::is('/') ? 'text-[#1FA7AF] active-on-scroll' : 'text-gray-600 hover:text-[#1FA7AF]' }}"
-                    data-target="home">
-                    Home
-                </a>
-
+                    data-target="home">Home</a>
                 <a href="{{ Request::is('/') ? '#gallery-event' : url('/#gallery-event') }}"
                     class="nav-link transition duration-300 {{ Request::is('/') ? 'text-gray-600 active-on-scroll' : 'text-gray-600 hover:text-[#1FA7AF]' }}"
-                    data-target="gallery-event">
-                    Gallery
-                </a>
-
+                    data-target="gallery-event">Gallery</a>
                 <a href="/lomba"
-                    class="nav-link transition duration-300 {{ Request::is('lomba*') ? 'text-[#1FA7AF]' : 'text-gray-600 hover:text-[#1FA7AF]' }}">
-                    Event
-                </a>
+                    class="nav-link transition duration-300 {{ Request::is('lomba*') ? 'text-[#1FA7AF]' : 'text-gray-600 hover:text-[#1FA7AF]' }}">Event</a>
             </div>
-
         </div>
     </nav>
 
     <section id="event" class="flex-grow w-full py-28 px-6 bg-white">
-
         <div class="max-w-6xl mx-auto">
-
-            <div class="text-center mb-20">
+            <div class="text-center mb-20" data-aos="zoom-in" data-aos-duration="1000">
                 <h1 class="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-4">Event & Lomba</h1>
                 <p class="text-gray-500 text-lg">Ikuti kegiatan seru dan asah kreativitasmu bersama kami.</p>
             </div>
 
             @if (isset($events) && $events->count())
                 @foreach ($events as $event)
-                    <div class="flex flex-col md:flex-row items-start gap-10 md:gap-16 mb-20 last:mb-0">
+                    <div class="flex flex-col md:flex-row items-start gap-10 md:gap-16 mb-20 last:mb-0"
+                        data-aos="fade-up" data-aos-duration="1000" data-aos-delay="{{ $loop->iteration * 150 }}">
 
                         <div class="flex-shrink-0 w-full md:w-auto flex justify-center">
                             <div
-                                class="w-[300px] h-[420px] md:w-[350px] md:h-[500px] bg-gray-100 rounded-2xl shadow-lg overflow-hidden relative">
-                                <img src="{{ asset('images/event-lomba/' . $event->photo) }}" alt="Poster {{ $event->title }}"
-                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                                class="w-[300px] md:w-[350px] h-auto bg-gray-100 rounded-2xl shadow-lg overflow-hidden relative group">
+
+                                <img src="{{ asset('images/event-lomba/' . $event->photo) }}"
+                                    alt="Poster {{ $event->title }}"
+                                    class="w-full h-auto block transition-transform duration-500 group-hover:scale-105">
+
                             </div>
                         </div>
 
-                        <div class="w-full md:flex-1 flex flex-col items-center md:items-start text-center md:text-left py-2">
-
-                            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight line-clamp-2"
+                        <div
+                            class="w-full md:flex-1 flex flex-col items-center md:items-start text-center md:text-left py-2">
+                            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-normal pb-1 line-clamp-none md:line-clamp-2"
                                 title="{{ $event->title }}">
                                 {{ $event->title }}
                             </h2>
 
-                            <div
-                                class="text-gray-600 text-base md:text-lg leading-relaxed mb-8 text-justify w-full md:max-w-2xl line-clamp-4">
-                                {{ $event->description }}
+                            {{-- BAGIAN PERBAIKAN DESKRIPSI --}}
+                            {{-- Menggunakan Alpine.js (x-data) untuk handle state expand/collapse --}}
+                            <div x-data="{ expanded: false }" class="w-full md:max-w-2xl">
+
+                                <div class="text-gray-600 text-base md:text-lg leading-relaxed text-justify mb-2 description-text"
+                                    :class="expanded ? '' : 'line-clamp-4'">
+                                    {{ $event->description }}
+                                </div>
+
+                                {{-- Logika Blade: Tombol hanya muncul jika karakter > 200 --}}
+                                @if (Str::length($event->description) > 200)
+                                    <button @click="expanded = !expanded"
+                                        class="text-[#1FA7AF] font-bold text-sm hover:underline focus:outline-none mb-8 transition-colors duration-300">
+                                        <span x-text="expanded ? 'Sembunyikan' : 'Selengkapnya...'"></span>
+                                    </button>
+                                @else
+                                    {{-- Spacer jika tidak ada tombol --}}
+                                    <div class="mb-8"></div>
+                                @endif
+
                             </div>
+                            {{-- AKHIR BAGIAN PERBAIKAN --}}
 
                             <a href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20untuk%20{{ urlencode($event->title) }}"
                                 target="_blank"
-                                class="inline-flex items-center justify-center px-10 py-3 text-base font-bold text-white transition-all duration-200 bg-blue-600 rounded-full hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1">
+                                class="inline-flex items-center justify-center px-10 py-3 text-base font-bold text-white transition-all duration-200 bg-[#1FA7AF] rounded-full hover:bg-[#177c82] hover:shadow-lg hover:-translate-y-1">
                                 Daftar Sekarang
                             </a>
-
                         </div>
-
                     </div>
 
                     @if (!$loop->last)
-                        <div class="w-full h-px bg-gray-100 my-16"></div>
+                        <div class="w-full h-px bg-gray-100 my-16" data-aos="fade-in" data-aos-duration="800"></div>
                     @endif
                 @endforeach
             @else
-                <div class="flex flex-col items-center justify-center py-20 text-center">
+                <div class="flex flex-col items-center justify-center py-20 text-center" data-aos="fade-up">
                     <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
                         <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -167,11 +164,12 @@
                     <h3 class="text-xl font-bold text-gray-600">Belum ada event tersedia</h3>
                 </div>
             @endif
-
         </div>
     </section>
 
-    <footer class="bg-white text-gray-700 py-10 px-6 md:px-20 border-t border-gray-200 mt-auto">
+    {{-- Footer dan Script tetap sama --}}
+    <footer class="bg-white text-gray-700 py-10 px-6 md:px-20 border-t border-gray-200 mt-auto" data-aos="fade-up"
+        data-aos-duration="1000">
         <div
             class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-10 text-center md:text-left">
             <div class="flex-shrink-0">
@@ -213,42 +211,38 @@
         </button>
     </a>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Hanya jalankan script ini jika kita berada di halaman utama (Home)
-            // Kita cek apakah elemen dengan ID 'home' ada di halaman ini
+        AOS.init({
+            once: true,
+            mirror: false,
+            offset: 50,
+            duration: 1000,
+        });
+    </script>
+    {{-- Script Navbar Scroll tetap sama --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
             const homeSection = document.getElementById('home');
-
             if (homeSection) {
                 const sections = document.querySelectorAll('section[id]');
                 const navLinks = document.querySelectorAll('.active-on-scroll');
-
                 window.addEventListener('scroll', () => {
                     let current = '';
-
                     sections.forEach(section => {
                         const sectionTop = section.offsetTop;
-                        const sectionHeight = section.clientHeight;
-
-                        // -150 pixel untuk trigger lebih awal sebelum garis section pas di atas
                         if (window.scrollY >= (sectionTop - 150)) {
                             current = section.getAttribute('id');
                         }
                     });
-
                     navLinks.forEach(link => {
-                        // Hapus warna aktif dari semua link scroll
                         link.classList.remove('text-[#1FA7AF]');
                         link.classList.add('text-gray-600');
-
-                        // Tambahkan warna aktif jika ID section cocok dengan data-target link
                         if (link.getAttribute('data-target') === current) {
                             link.classList.remove('text-gray-600');
                             link.classList.add('text-[#1FA7AF]');
                         }
                     });
-
-                    // Khusus jika scroll di paling atas (top 0), paksa Home aktif
                     if (window.scrollY < 100) {
                         const homeLink = document.querySelector('a[data-target="home"]');
                         if (homeLink) {

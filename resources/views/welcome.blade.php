@@ -160,13 +160,15 @@
                                         class="w-[320px] h-[450px] md:w-[500px] md:h-[700px] bg-[#c8c3c3] rounded-[3rem] overflow-hidden flex-shrink-0 shadow-2xl relative z-10">
                                         @if ($p->foto)
                                             <img src="{{ asset('images/pengajar/' . $p->foto) }}"
-                                                class="w-full h-full object-cover pointer-events-none" alt="{{ $p->nama }}">
+                                                class="w-full h-full object-cover pointer-events-none"
+                                                alt="{{ $p->nama }}">
                                         @else
                                             <div class="w-full h-full bg-[#c8c3c3]"></div>
                                         @endif
                                     </div>
                                     <div class="flex-1 text-center md:text-left max-w-2xl px-4 md:px-0">
-                                        <h2 class="text-5xl md:text-7xl font-bold text-black mb-8 leading-tight tracking-tight">
+                                        <h2
+                                            class="text-5xl md:text-7xl font-bold text-black mb-8 leading-tight tracking-tight">
                                             {{ $p->nama }}
                                         </h2>
                                         <p class="text-gray-500 text-lg md:text-2xl leading-relaxed font-medium">
@@ -196,6 +198,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-8 lg:gap-10">
+
                 <div onclick="toggleCard(this)" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000"
                     class="bg-white/90 p-6 md:p-12 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl w-full hover:scale-105 transition-all duration-300 flex flex-col justify-between cursor-pointer md:cursor-default h-auto md:min-h-[500px] group">
                     <div class="flex justify-between items-center w-full">
@@ -204,18 +207,21 @@
                         <span
                             class="arrow-icon md:hidden text-2xl text-gray-500 transition-transform duration-300">▼</span>
                     </div>
-                    <div class="w-full h-40 md:h-56 rounded-2xl overflow-hidden bg-gray-200 shadow-sm mt-4 md:mt-6">
+
+                    <div
+                        class="card-image hidden md:block w-full aspect-square md:aspect-auto md:h-56 rounded-2xl overflow-hidden bg-gray-200 shadow-sm mt-4 md:mt-6">
                         <img src="{{ asset('images/plomba.jpeg') }}" class="w-full h-full object-cover"
                             alt="Gambar Kelas Lomba">
                     </div>
-                    <div class="card-content hidden md:flex flex-col justify-between h-full mt-4 md:mt-6">
+
+                    <div class="card-content hidden md:flex flex-col gap-6 mt-4 md:mt-6">
                         <ul
                             class="text-left text-gray-700 text-sm md:text-lg font-medium space-y-3 pl-2 md:pl-4 list-disc list-outside leading-relaxed">
                             <li>Belajar teknik gradasi warna dan tekstur</li>
                             <li>Belajar penambahan objek gambar ala juara</li>
                             <li>Strategi cepat menyelesaikan gambar tepat waktu</li>
                         </ul>
-                        <div class="flex justify-center pb-2 mt-2">
+                        <div class="flex justify-center pb-2">
                             <div class="transform md:scale-125"><a
                                     href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Lomba"
                                     target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
@@ -231,18 +237,21 @@
                         <span
                             class="arrow-icon md:hidden text-2xl text-gray-500 transition-transform duration-300">▼</span>
                     </div>
-                    <div class="w-full h-40 md:h-56 rounded-2xl overflow-hidden bg-gray-200 shadow-sm mt-4 md:mt-6">
+
+                    <div
+                        class="card-image hidden md:block w-full aspect-square md:aspect-auto md:h-56 rounded-2xl overflow-hidden bg-gray-200 shadow-sm mt-4 md:mt-6">
                         <img src="{{ asset('images/lukis.jpeg') }}" class="w-full h-full object-cover"
                             alt="Gambar Kelas Seni Lukis">
                     </div>
-                    <div class="card-content hidden md:flex flex-col justify-between h-full mt-4 md:mt-6">
+
+                    <div class="card-content hidden md:flex flex-col gap-6 mt-4 md:mt-6">
                         <ul
                             class="text-left text-gray-700 text-sm md:text-lg font-medium space-y-3 pl-2 md:pl-4 list-disc list-outside leading-relaxed">
                             <li>Belajar teknik dasar lukis (Cat minyak, Akrilik, atau Cat air)</li>
                             <li>Eksplorasi teknik <i>Mix Media</i></li>
                             <li>Pengembangan gaya lukisan personal</li>
                         </ul>
-                        <div class="flex justify-center pb-2 mt-2">
+                        <div class="flex justify-center pb-2">
                             <div class="transform md:scale-125"><a
                                     href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Seni%20Lukis"
                                     target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
@@ -258,18 +267,21 @@
                         <span
                             class="arrow-icon md:hidden text-2xl text-gray-500 transition-transform duration-300">▼</span>
                     </div>
-                    <div class="w-full h-40 md:h-56 rounded-2xl overflow-hidden bg-gray-200 shadow-sm mt-4 md:mt-6">
+
+                    <div
+                        class="card-image hidden md:block w-full aspect-square md:aspect-auto md:h-56 rounded-2xl overflow-hidden bg-gray-200 shadow-sm mt-4 md:mt-6">
                         <img src="{{ asset('images/funart.jpeg') }}" class="w-full h-full object-cover"
                             alt="Gambar Kelas Fun Art">
                     </div>
-                    <div class="card-content hidden md:flex flex-col justify-between h-full mt-4 md:mt-6">
+
+                    <div class="card-content hidden md:flex flex-col gap-6 mt-4 md:mt-6">
                         <ul
                             class="text-left text-gray-700 text-sm md:text-lg font-medium space-y-3 pl-2 md:pl-4 list-disc list-outside leading-relaxed">
                             <li>Belajar teknik dasar mewarnai dari nol (Gradasi & Mixing)</li>
                             <li>Belajar menambahkan objek gambar kreatif</li>
                             <li>Teknik menghias gambar agar lebih hidup</li>
                         </ul>
-                        <div class="flex justify-center pb-2 mt-2">
+                        <div class="flex justify-center pb-2">
                             <div class="transform md:scale-125"><a
                                     href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Fun%20Art"
                                     target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
@@ -286,11 +298,14 @@
                         <span
                             class="arrow-icon md:hidden text-2xl text-gray-500 transition-transform duration-300">▼</span>
                     </div>
-                    <div class="w-full h-40 md:h-56 rounded-2xl overflow-hidden bg-gray-200 shadow-sm mt-4 md:mt-6">
+
+                    <div
+                        class="card-image hidden md:block w-full aspect-square md:aspect-auto md:h-56 rounded-2xl overflow-hidden bg-gray-200 shadow-sm mt-4 md:mt-6">
                         <img src="{{ asset('images/fsrd.jpeg') }}" class="w-full h-full object-cover"
                             alt="Gambar Kelas FSRD">
                     </div>
-                    <div class="card-content hidden md:flex flex-col justify-between h-full mt-4 md:mt-6">
+
+                    <div class="card-content hidden md:flex flex-col gap-6 mt-4 md:mt-6">
                         <ul
                             class="text-left text-gray-700 text-sm md:text-lg font-medium space-y-3 pl-2 md:pl-4 list-disc list-outside leading-relaxed">
                             <li>Belajar teknik anatomi manusia</li>
@@ -298,7 +313,7 @@
                             <li>Gambar naratif, konstruktif, dan perspektif</li>
                             <li>Bonus: Bimbingan portofolio tes masuk</li>
                         </ul>
-                        <div class="flex justify-center pb-2 mt-2">
+                        <div class="flex justify-center pb-2">
                             <div class="transform md:scale-125"><a
                                     href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20FSRD"
                                     target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
@@ -375,7 +390,8 @@
 
     <section class="relative py-32 md:py-48 overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-full -z-10">
-            <img src="{{ asset('images/bg2.png') }}" alt="background" class="w-full h-full object-cover object-center">
+            <img src="{{ asset('images/bg2.png') }}" alt="background"
+                class="w-full h-full object-cover object-center">
             <div class="absolute inset-0 bg-gradient-to-r from-white/60 to-transparent"></div>
         </div>
         <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10" data-aos="fade-up" data-aos-duration="1200">
@@ -471,7 +487,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Hanya jalankan script ini jika kita berada di halaman utama (Home)
             // Kita cek apakah elemen dengan ID 'home' ada di halaman ini
             const homeSection = document.getElementById('home');
@@ -530,23 +546,46 @@
 
         // TOGGLE CARD MOBILE
         function toggleCard(card) {
+            // Cek apakah layar mobile (< 768px)
             if (window.innerWidth < 768) {
                 const content = card.querySelector('.card-content');
                 const arrow = card.querySelector('.arrow-icon');
+
+                // TAMBAHAN: Ambil elemen gambar (pastikan di HTML sudah ada class 'card-image')
+                const image = card.querySelector('.card-image');
+
+                // Cek kondisi saat ini (sedang tertutup atau terbuka?)
                 if (content.classList.contains('hidden')) {
+                    // --- LOGIKA MEMBUKA KARTU ---
+
+                    // 1. Munculkan deskripsi/tombol
                     content.classList.remove('hidden');
                     content.classList.add('flex');
+
+                    // 2. Putar panah
                     arrow.style.transform = 'rotate(180deg)';
+
+                    // 3. TAMBAHAN: Munculkan gambar
+                    if (image) image.classList.remove('hidden');
+
                 } else {
+                    // --- LOGIKA MENUTUP KARTU ---
+
+                    // 1. Sembunyikan deskripsi/tombol
                     content.classList.add('hidden');
                     content.classList.remove('flex');
+
+                    // 2. Balikkan panah
                     arrow.style.transform = 'rotate(0deg)';
+
+                    // 3. TAMBAHAN: Sembunyikan gambar lagi
+                    if (image) image.classList.add('hidden');
                 }
             }
         }
 
         // SWIPER INIT
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const commonConfig = {
                 slidesPerView: 1,
                 spaceBetween: 0,
