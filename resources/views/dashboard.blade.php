@@ -20,7 +20,7 @@
 
         {{-- Gallery Event --}}
         <section>
-            <h2 class="text-xl font-semibold mb-3">📷 Galeri Event</h2>
+            <h2 class="text-xl font-semibold mb-3">📷 Galeri Kelas</h2>
 
             <div class="flex overflow-x-auto no-scrollbar space-x-4 py-3">
                 @forelse ($galleryEvent as $img)
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 @empty
-                    <p>Tidak ada foto event.</p>
+                    <p>Tidak ada foto kelas.</p>
                 @endforelse
             </div>
         </section>

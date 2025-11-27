@@ -41,13 +41,12 @@
 <body class="font-sans bg-white text-gray-800">
 
     <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50" data-aos="fade-down" data-aos-duration="1000">
-        <div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-6 md:px-10">
+        <div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-6 md:px-10"> 
             <div class="flex items-center gap-8 font-semibold">
                 <a href="#home" class="hover:text-blue-500 transition">Home</a>
                 <a href="#gallery-event" class="hover:text-blue-500 transition">Gallery</a>
                 <a href="/lomba" class="hover:text-blue-500 transition">Event</a>
             </div>
-            <div class="font-black text-xl tracking-tighter text-gray-900">EXGEN</div>
         </div>
     </nav>
 
@@ -67,7 +66,8 @@
             <img src="{{ asset('images/logo.png') }}" alt="Logo ExGen" class="h-32 md:h-48 w-auto mb-6 drop-shadow-lg">
             <h1 class="text-4xl md:text-6xl font-bold mb-6 text-gray-800 drop-shadow-sm">EXGEN ART STUDIO</h1>
             <p class="max-w-2xl mx-auto text-base md:text-xl text-gray-700 leading-relaxed">
-                Apotek Kami adalah tujuan utama Anda untuk kesehatan yang lebih baik.
+                Kelas seni yang didirikan oleh salah satu alumni fakultas seni rupa dan desain ITB yang berfokus pada
+                penyiapan bibit-bibit unggul kreatif di bidang seni rupa dan desain.
             </p>
         </div>
     </section>
@@ -145,7 +145,9 @@
                             <li>Strategi cepat menyelesaikan gambar tepat waktu</li>
                         </ul>
                         <div class="flex justify-center pb-2 mt-6">
-                            <div class="transform md:scale-125"><a href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Lomba" target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
+                            <div class="transform md:scale-125"><a
+                                    href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Lomba"
+                                    target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
                         </div>
                     </div>
                 </div>
@@ -166,7 +168,9 @@
                             <li>Pengembangan gaya lukisan personal</li>
                         </ul>
                         <div class="flex justify-center pb-2 mt-6">
-                            <div class="transform md:scale-125"><a href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Seni%20Lukis" target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
+                            <div class="transform md:scale-125"><a
+                                    href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Seni%20Lukis"
+                                    target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
                         </div>
                     </div>
                 </div>
@@ -187,7 +191,9 @@
                             <li>Teknik menghias gambar agar lebih hidup</li>
                         </ul>
                         <div class="flex justify-center pb-2 mt-6">
-                            <div class="transform md:scale-125"><a href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Fun%20Art" target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
+                            <div class="transform md:scale-125"><a
+                                    href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20Fun%20Art"
+                                    target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
                         </div>
                     </div>
                 </div>
@@ -209,7 +215,9 @@
                             <li>Bonus: Bimbingan portofolio tes masuk</li>
                         </ul>
                         <div class="flex justify-center pb-2 mt-6">
-                            <div class="transform md:scale-125"><a href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20FSRD" target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
+                            <div class="transform md:scale-125"><a
+                                    href="https://wa.me/6289518495415?text=Halo,%20saya%20ingin%20mendaftar%20Kelas%20FSRD"
+                                    target="_blank"><button class="btn-uiverse">Daftar</button></a></div>
                         </div>
                     </div>
                 </div>
@@ -222,7 +230,7 @@
 
             <div id="gallery-event" class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-24">
                 <h2 class="block md:hidden text-3xl font-bold text-black text-center w-full" data-aos="fade-up">
-                    Gallery Kelas</h2>
+                    Galeri Kelas</h2>
                 <div class="swiper swiper-event w-[320px] h-[320px] md:w-[500px] md:h-[500px] rounded-[2rem] overflow-hidden shadow-sm bg-gray-300"
                     data-aos="fade-right" data-aos-duration="1200">
                     <div class="swiper-wrapper">
@@ -238,11 +246,13 @@
                 </div>
                 <div class="w-full md:w-1/2 flex flex-col items-center md:items-center" data-aos="fade-left"
                     data-aos-duration="1200">
-                    <h2 class="hidden md:block text-3xl md:text-5xl font-bold mb-4 text-black text-center">Gallery
+                    <h2 class="hidden md:block text-3xl md:text-5xl font-bold mb-4 text-black text-center">Galeri
                         Kelas</h2>
                     <p class="text-gray-500 text-base md:text-lg leading-relaxed max-w-lg text-justify">
                         Kumpulan dokumentasi ini mengabadikan konsentrasi, kreativitas, dan imajinasi para peserta saat
-                        mereka menuangkan ide ke atas kanvas.
+                        mereka menuangkan ide ke atas kanvas. Setiap foto di sini menjadi saksi bisu betapa meriahnya
+                        acara, menunjukkan bakat-bakat muda yang berkompetisi dan merayakan seni visual di Exgen Art
+                        Studio.
                     </p>
                 </div>
             </div>
@@ -250,7 +260,7 @@
             <div id="gallery-karya"
                 class="flex flex-col md:flex-row-reverse items-center justify-center gap-6 md:gap-24">
                 <h2 class="block md:hidden text-3xl font-bold text-black text-center w-full" data-aos="fade-up">
-                    Gallery Karya</h2>
+                    Galeri Karya</h2>
                 <div class="swiper swiper-karya w-[320px] h-[320px] md:w-[500px] md:h-[500px] rounded-[2rem] overflow-hidden shadow-sm bg-gray-300"
                     data-aos="fade-left" data-aos-duration="1200">
                     <div class="swiper-wrapper">
@@ -266,11 +276,12 @@
                 </div>
                 <div class="w-full md:w-1/2 flex flex-col items-center md:items-center" data-aos="fade-right"
                     data-aos-duration="1200">
-                    <h2 class="hidden md:block text-3xl md:text-5xl font-bold mb-4 text-black text-center">Gallery
+                    <h2 class="hidden md:block text-3xl md:text-5xl font-bold mb-4 text-black text-center">Galeri
                         Karya</h2>
                     <p class="text-gray-500 text-base md:text-lg leading-relaxed max-w-lg text-justify">
                         Setiap gambar, proyek, dan karya seni di sini adalah bukti nyata dari proses belajar, inovasi,
-                        dan dedikasi mereka.
+                        dan dedikasi mereka. Kami bangga mempersembahkan kumpulan dokumentasi ini sebagai jendela menuju
+                        prestasi dan potensi tak terbatas yang dimiliki oleh setiap siswa di Exgen
                     </p>
                 </div>
             </div>

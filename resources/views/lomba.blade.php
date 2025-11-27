@@ -46,7 +46,6 @@
                 <a href="/#gallery-event" class="hover:text-blue-500 transition">Gallery</a>
                 <a href="#event" class="hover:text-blue-500 transition">Event</a>
             </div>
-            <div class="font-black text-xl tracking-tighter text-gray-900">EXGEN</div>
         </div>
     </nav>
 
